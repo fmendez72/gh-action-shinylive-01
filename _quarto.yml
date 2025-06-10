@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Interactive Data Dashboard"
+  description: "Python data analysis with Shinylive"
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Home"
+    right:
+      - icon: github
+        href: https://github.com/YOUR-USERNAME/YOUR-REPO
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-location: left
+    code-fold: true
+    code-tools: true
+    
+# This is crucial for Shinylive
+filters:
+  - shinylive
+
+# Execution options
+execute:
+  freeze: auto

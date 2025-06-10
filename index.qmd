@@ -1,0 +1,56 @@
+---
+title: "Simple Interactive Dashboard"
+format: html
+---
+
+## Python Data Explorer
+
+This is a minimal example of Shinylive in Quarto:
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 500
+
+from shiny import App, render, ui
+import numpy as np
+import matplotlib.pyplot as plt
+
+app_ui = ui.page_fluid(
+    ui.h2("Simple Data Generator"),
+    ui.input_slider("n", "Number of points:", 10, 100, 50),
+    ui.input_selectize("dist", "Distribution:", 
+                      {"normal": "Normal", "uniform": "Uniform"}),
+    ui.output_plot("plot"),
+    ui.output_text("stats")
+)
+
+def server(input, output, session):
+    
+    @output
+    @render.plot
+    def plot():
+        n = input.n()
+        if input.dist() == "normal":
+            data = np.random.normal(0, 1, n)
+        else:
+            data = np.random.uniform(-2, 2, n)
+            
+        plt.figure(figsize=(8, 4))
+        plt.hist(data, bins=15, alpha=0.7)
+        plt.title(f"{input.dist().title()} Distribution (n={n})")
+        return plt.gcf()
+    
+    @output
+    @render.text
+    def stats():
+        n = input.n()
+        if input.dist() == "normal":
+            data = np.random.normal(0, 1, n)
+        else:
+            data = np.random.uniform(-2, 2, n)
+        return f"Mean: {np.mean(data):.2f}, Std: {np.std(data):.2f}"
+
+app = App(app_ui, server)
+```
+
+That's it! A working interactive Python dashboard.

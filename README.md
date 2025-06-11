@@ -1,293 +1,296 @@
-# Interactive Data Dashboard with Quarto Shinylive
+# Quarto + Shinylive + GitHub Pages Template
 
-[![Deploy to GitHub Pages](https://github.com/YOUR-USERNAME/YOUR-REPO/actions/workflows/publish.yml/badge.svg)](https://github.com/YOUR-USERNAME/YOUR-REPO/actions/workflows/publish.yml)
+A minimal, working template for creating interactive Python dashboards using Quarto, Shinylive, and automated GitHub Pages deployment.
 
-A modern, interactive data analysis dashboard built with Quarto and Shinylive. Features Python-powered statistical analysis running entirely in the browser - no server required!
+## 🎯 What This Template Provides
 
-## 🎯 Why This Approach?
+- **Interactive Python widgets** running in the browser (no server required)
+- **Automated deployment** to GitHub Pages via GitHub Actions
+- **Local development** with Quarto preview
+- **Zero server costs** - everything runs client-side using WebAssembly
+- **Professional dashboard layout** with Quarto theming
 
-### Advantages Over Traditional Methods
+## 🚀 Live Demo
+See the template in action: **[Live Dashboard](https://fmendez72.github.io/gh-action-shinylive-01)**
 
-**vs. R Shiny Server:**
-- ❌ R Shiny: Requires server, monthly costs, complex deployment
-- ✅ Shinylive: Static files, free hosting, git-push deployment
+## 📋 Prerequisites
 
-**vs. Streamlit:**
-- ❌ Streamlit: Limited free tier, server restarts, sharing restrictions  
-- ✅ Shinylive: Unlimited usage, always available, direct URL sharing
+### Local Development Requirements
+- **RStudio** (recommended) or any text editor
+- **Quarto CLI** installed ([Download](https://quarto.org/docs/get-started/))
+- **Python environment** with shinylive, matplotlib, pandas, numpy packages
+- **Git** for version control
 
-**vs. Jupyter Notebooks:**
-- ❌ Jupyter: Static outputs, requires local Python environment
-- ✅ Shinylive: Interactive widgets, runs anywhere with web browser
+### GitHub Requirements
+- **GitHub account**
+- **Personal Access Token** with `repo` and `workflow` scopes
 
-## 🔍 Technical Details
+## 🛠️ Quick Start: Using This Template
 
-### Browser Execution Architecture
+### Step 1: Create Repository from Template
 
-```
-User Browser
-├── WebAssembly (Pyodide)
-├── Python Runtime
-├── NumPy, Pandas, Matplotlib
-├── Shiny for Python
-└── Your Dashboard Code
-```
+1. **Click "Use this template"** button at the top of this repository
+2. **Choose "Create a new repository"**
+3. **Name your repository** (e.g., `my-dashboard`)
+4. **Make it Public** (required for free GitHub Pages)
+5. **Click "Create repository"**
 
-### Performance Characteristics
+### Step 2: Clone to Your Local Machine
 
-- **Cold start**: 3-5 seconds (one-time Python runtime load)
-- **Warm interactions**: <100ms response time
-- **Memory usage**: ~50MB for Python runtime + your data
-- **Concurrent users**: Unlimited (each runs independently)
-
-### Security Model
-
-- **Client-side only**: No server-side code execution
-- **Sandbox environment**: WebAssembly security constraints
-- **No file system access**: Browser security model
-- **HTTPS required**: Secure origins only
-
-## 🛡️ Troubleshooting
-
-### Common Issues in RStudio
-
-**Issue**: "shinylive filter not found"
 ```bash
-# Solution: Install Quarto pre-release
-quarto install extension quarto-ext/shinylive
+# Replace YOUR-USERNAME and REPO-NAME with your details
+git clone https://github.com/YOUR-USERNAME/REPO-NAME.git
+cd REPO-NAME
 ```
 
-**Issue**: Local preview not working
-```r
-# Solution: Check Quarto installation
-quarto::quarto_version()
-# Should be >= 1.4.0
+### Step 3: Enable GitHub Pages
+
+1. **Go to your repository** on GitHub
+2. **Click Settings** → **Pages**
+3. **Under "Source"** select **"GitHub Actions"**
+4. **Save** the settings
+
+### Step 4: Test Deployment
+
+```bash
+# Make a small change to index.qmd
+# Commit and push
+git add .
+git commit -m "Initial setup"
+git push origin main
 ```
 
-**Issue**: Python libraries not available
-- **Not needed!** Libraries run in browser via Pyodide
-- Available: numpy, pandas, matplotlib, scipy, scikit-learn
-- Not available: tensorflow, pytorch (too large for browser)
+**Your site will be live at:** `https://YOUR-USERNAME.github.io/REPO-NAME`
 
-### GitHub Pages Issues
+## 💻 Local Development
 
-**Issue**: 404 error on deployed site
-1. Check repository Settings → Pages → Source: "GitHub Actions"
-2. Verify workflow completed successfully in Actions tab
-3. Ensure `index.qmd` exists in repository root
+### Important: No Real Preview Available
 
-**Issue**: Slow deployment
-- Normal: 3-5 minutes for first deployment
-- Subsequent: 2-3 minutes (cached dependencies)
-- Much faster than R workflows (no package compilation)
+**Key Point:** You cannot truly preview Shinylive dashboards locally. The interactive Python widgets only work on the deployed GitHub Pages site.
 
-## 📚 Resources
+### The Reality of Local Development
 
-### Documentation
-- [Quarto Documentation](https://quarto.org/docs/)
-- [Shinylive Guide](https://shiny.posit.co/py/docs/shinylive.html)
-- [Shiny for Python](https://shiny.posit.co/py/)
+**Local "preview" limitations:**
+- ❌ **No Shinylive interactivity** (sliders, buttons won't work)
+- ❌ **No real Python execution** (requires WebAssembly runtime)
+- ❌ **No widget functionality** (plots may not display correctly)
 
-### Examples and Inspiration
-- [Quarto Gallery](https://quarto.org/docs/gallery/)
-- [Shinylive Examples](https://shinylive.io/py/examples/)
-- [PyScript Demos](https://pyscript.com/examples/)
+**What you can check locally:**
+- ✅ Markdown rendering and basic layout
+- ✅ Quarto syntax and structure
+- ✅ General page organization
 
-### Community
-- [Quarto Discussions](https://github.com/quarto-dev/quarto-cli/discussions)
-- [Shiny Community](https://community.rstudio.com/c/shiny/)
-- [Python Data Science Community](https://python.org/community/)
+### Recommended Development Workflow: Build → Push → Test
 
-## 📞 Support
+**This is the only reliable way to test your changes:**
 
-- **Documentation Issues**: Check [Quarto docs](https://quarto.org/docs/)
-- **Deployment Problems**: See [GitHub Pages docs](https://docs.github.com/en/pages)
-- **Feature Requests**: Open an [issue](https://github.com/YOUR-USERNAME/YOUR-REPO/issues)
-- **General Questions**: Start a [discussion](https://github.com/YOUR-USERNAME/YOUR-REPO/discussions)
+1. **Edit files** in RStudio or your preferred editor
+2. **Build and deploy** immediately:
+   ```bash
+   git add .
+   git commit -m "Describe your changes"
+   git push origin main
+   ```
+3. **Wait 3-5 minutes** for GitHub Actions to complete
+4. **Test full functionality** on your live site: `https://YOUR-USERNAME.github.io/REPO-NAME`
 
----
+### Optional: Local Layout Check Only
 
-## 🎉 Success Stories
+If you want to check basic layout and Quarto syntax:
 
-> "Deployed my research dashboard in 10 minutes. No server setup, no monthly bills. Just works!" - Research Scientist
+```bash
+# Replace /path/to/your/python-env with your actual path
+PATH="/path/to/your/python-env/bin:$PATH" quarto render index.qmd
+# Actual example:
+PATH="/home/fernando/python-env/bin:$PATH" quarto render index.qmd
+```
 
-> "Finally, interactive Python visualizations I can share with anyone via a simple link." - Data Analyst  
+**But remember:** This will show broken widgets and non-functional Python code. Use it only for checking markdown formatting and basic structure.
 
-> "The RStudio integration is seamless. I write in Quarto, push to GitHub, and it's live." - Statistician
+### Why Preview Doesn't Work
 
----
+- **Shinylive requires WebAssembly runtime** that's only available in the full deployment
+- **Local Quarto preview** doesn't include the complete Shinylive infrastructure
+- **Python execution** needs the browser-based Pyodide environment
 
-**Ready to build your own interactive dashboard? Fork this repository and start customizing!**
-
-[![Fork Repository](https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge&logo=github)](https://github.com/YOUR-USERNAME/YOUR-REPO/fork)
-[![View Live Demo](https://img.shields.io/badge/View-Live%20Demo-green?style=for-the-badge&logo=github-pages)](https://YOUR-USERNAME.github.io/YOUR-REPO) 🌟 Features
-
-- **🐍 Browser-based Python** execution via WebAssembly
-- **📊 Interactive visualizations** with real-time updates
-- **📈 Statistical analysis** tools with NumPy, Pandas, Matplotlib
-- **🚀 Zero server costs** - hosted on GitHub Pages
-- **📱 Responsive design** - works on all devices
-- **⚡ Fast deployment** - changes live in minutes
-
-## 🔗 Live Demo
-
-Visit the deployed dashboard: **[https://YOUR-USERNAME.github.io/YOUR-REPO](https://YOUR-USERNAME.github.io/YOUR-REPO)**
-
-## 🛠️ Built With
-
-- [Quarto](https://quarto.org/) - Scientific publishing system
-- [Shinylive](https://shiny.posit.co/py/docs/shinylive.html) - Browser-based Python Shiny
-- [PyScript](https://pyscript.net/) / [Pyodide](https://pyodide.org/) - Python in the browser
-- [GitHub Actions](https://github.com/features/actions) - CI/CD pipeline
-- [GitHub Pages](https://pages.github.com/) - Static hosting
+**Bottom line:** Treat local development as text editing only. Real testing happens on the deployed site.
 
 ## 📁 Project Structure
 
 ```
-├── _quarto.yml          # Quarto configuration
-├── index.qmd            # Main dashboard page
-├── about.qmd            # About page
-├── styles.css           # Custom styling
-├── .github/
-│   └── workflows/
-│       └── publish.yml  # GitHub Actions workflow
-├── .gitignore
-└── README.md
+your-repo/
+├── _quarto.yml                    # Quarto project configuration
+├── index.qmd                      # Main dashboard page with Python app
+├── .github/workflows/
+│   └── publish.yml               # GitHub Actions deployment workflow
+├── _extensions/                   # Shinylive extension (auto-generated)
+│   └── quarto-ext/shinylive/
+├── .gitignore                    # Git exclusions
+└── README.md                     # This file
 ```
 
-## 🚀 Quick Start
+## 🔧 Customizing Your Dashboard
 
-### Option 1: Use This Template
+### Adding New Python Widgets
 
-1. Click "Use this template" → "Create a new repository"
-2. Enable GitHub Pages in Settings → Pages → Source: "GitHub Actions"
-3. Your site will be live at `https://YOUR-USERNAME.github.io/YOUR-REPO`
+Edit `index.qmd` and add new Shinylive code blocks:
 
-### Option 2: Clone and Customize
+````markdown
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 400
+
+from shiny import App, render, ui
+import matplotlib.pyplot as plt
+
+# Your Python app code here
+app_ui = ui.page_fluid(
+    ui.h2("My New Widget"),
+    # Add UI elements
+)
+
+def server(input, output, session):
+    # Add server logic
+    pass
+
+app = App(app_ui, server)
+```
+````
+
+### Multiple Pages
+
+Create additional `.qmd` files and update `_quarto.yml`:
+
+```yaml
+website:
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Dashboard"
+      - href: analysis.qmd  
+        text: "Analysis"
+      - href: about.qmd
+        text: "About"
+```
+
+### Styling and Themes
+
+Modify `_quarto.yml`:
+
+```yaml
+format:
+  html:
+    theme: [cosmo, custom.scss]  # Add custom styling
+    css: styles.css
+```
+
+## 🚨 Common Issues and Solutions
+
+### Issue: "Error running 'shinylive' command"
+
+**Solution:** Ensure Python environment is correctly configured and PATH is set:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git
-cd YOUR-REPO
+# Verify shinylive is installed in your environment
+/path/to/your/python-env/bin/shinylive --version
 
-# Edit files as needed
-# Push changes to deploy automatically
-git add .
-git commit -m "Customize dashboard"
-git push origin main
+# Use full PATH when running quarto
+PATH="/path/to/your/python-env/bin:$PATH" quarto preview index.qmd
 ```
 
-## 💻 Local Development (RStudio)
+### Issue: GitHub Actions failing with artifact errors
 
-### Prerequisites
+**Solution:** Ensure you're using the latest action versions in `.github/workflows/publish.yml`:
 
-- [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/)  
-- [Quarto](https://quarto.org/docs/get-started/)
-
-### Setup Steps
-
-1. **Open in RStudio**:
-   - File → New Project → Version Control → Git
-   - Enter repository URL
-
-2. **Install R packages**:
-   ```r
-   install.packages(c("quarto", "rmarkdown"))
-   ```
-
-3. **Preview locally**:
-   - Click "Render" button in RStudio, or
-   - Run in Terminal: `quarto preview`
-
-4. **Make changes**:
-   - Edit `.qmd` files in RStudio
-   - Preview changes instantly
-   - Commit and push to deploy
-
-### 🔧 No Python Setup Required!
-
-The Python code runs in the browser via Shinylive - you don't need Python installed locally. RStudio handles everything through Quarto.
-
-## 📊 Dashboard Features
-
-### Statistical Distributions Explorer
-
-- **5 distribution types**: Normal, Exponential, Uniform, Poisson, Gamma
-- **Interactive controls**: Sample size, histogram bins, real-time refresh
-- **Visualizations**: Histograms, box plots, summary statistics
-- **Data preview**: Sample data tables with calculations
-
-### Performance Optimized
-
-- **Fast initial load**: ~3-5 seconds for Python runtime
-- **Instant interactions**: No network latency
-- **Efficient rendering**: Optimized matplotlib plots
-- **Responsive design**: Works on mobile and desktop
-
-## 🎨 Customization
-
-### Adding New Features
-
-Edit `index.qmd` to add:
-
-```python
-# New distribution
-elif dist_type == "beta":
-    data = np.random.beta(a=2, b=5, size=n)
-    params = "α=2, β=5"
-
-# New visualization
-plt.scatter(data[:-1], data[1:])
-plt.title("Lag Plot")
-
-# New statistics
-kurtosis = ((data - np.mean(data))**4).mean() / (np.std(data)**4)
+```yaml
+- uses: actions/upload-pages-artifact@v3
+- uses: actions/deploy-pages@v4
 ```
 
-### Styling
+### Issue: Local preview URL not clickable
 
-Modify `styles.css` for custom appearance:
+**Solution:** Manually copy and paste the URL (usually `http://localhost:4019/`) into your browser.
 
-```css
-/* Custom theme colors */
-.btn-primary {
-    background: linear-gradient(45deg, #your-color1, #your-color2);
-}
+### Issue: Widgets not working locally
 
-/* Card styling */
-.card {
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-```
+**Expected behavior:** Shinylive widgets only work on the deployed site, not in local preview.
 
-## 🔄 Deployment Pipeline
+## 🔐 Authentication Notes
 
-Every push to `main` triggers:
+If you encounter authentication issues when pushing:
 
-1. **Setup**: Install Quarto and Python dependencies
-2. **Render**: Convert `.qmd` files to HTML
-3. **Deploy**: Publish to GitHub Pages
-4. **Live**: Site updates automatically (2-5 minutes)
+1. **Use Personal Access Token** instead of password
+2. **Ensure token has `repo` and `workflow` scopes**
+3. **Alternative:** Set up SSH keys or use GitHub CLI
 
-## 📈 Performance Comparison
+## 📚 What's Included in This Template
 
-| Approach | Setup Time | Hosting Cost | Scalability | Maintenance |
-|----------|------------|--------------|-------------|-------------|
-| **Shinylive** | 5 minutes | Free | Unlimited | Zero |
-| Traditional Shiny | 2+ hours | $10+/month | Limited | High |
-| Streamlit Cloud | 30 minutes | Free tier limited | Moderate | Medium |
+### Working Python Dashboard
+- Interactive sliders and dropdowns
+- Real-time plot generation with matplotlib
+- Statistical calculations with numpy
+- Multiple distribution options
+
+### Automated Deployment
+- GitHub Actions workflow
+- Automatic Python environment setup
+- Quarto rendering and deployment
+- No manual server configuration
+
+### Development Ready
+- Pre-configured Quarto project
+- Shinylive extension installed
+- Proper .gitignore settings
+- Example styling
+
+## 🎯 Next Steps
+
+### Easy Enhancements
+- **Add more plots:** Box plots, scatter plots, heatmaps
+- **File upload:** Let users analyze their own CSV files
+- **More statistics:** Regression, correlation analysis
+- **Professional styling:** Custom themes and layouts
+
+### Advanced Features
+- **Multiple pages:** Separate analysis sections
+- **Data tables:** Interactive pandas DataFrames  
+- **Export functionality:** Download plots and data
+- **API integration:** Real-time data sources
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b new-feature`
-3. Make changes and test locally
-4. Commit: `git commit -m "Add new feature"`
-5. Push: `git push origin new-feature`
-6. Open a Pull Request
+This template is designed to be:
+- **Minimal but complete** - everything needed, nothing extra
+- **Actually working** - no missing dependencies or configuration
+- **Well-documented** - clear setup and troubleshooting
+
+Feel free to submit issues or improvements!
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - feel free to use this template for any purpose.
 
-##
+---
+
+## 🔍 Technical Details
+
+### Why This Setup Works
+
+1. **Shinylive** converts Python code to WebAssembly for browser execution
+2. **Quarto** provides professional document generation and theming
+3. **GitHub Actions** handles Python dependencies and deployment automatically
+4. **GitHub Pages** serves the static site with client-side Python execution
+
+### Browser Requirements
+
+- **Modern browser** with WebAssembly support (Chrome, Firefox, Safari, Edge)
+- **No plugins required** - everything runs natively in the browser
+- **Works offline** after initial load
+
+### Performance Notes
+
+- **First load:** 3-5 seconds (downloads Python runtime)
+- **Subsequent loads:** Instant (cached locally)
+- **Python execution:** Near-native speed via WebAssembly
+
+This template provides a complete, production-ready foundation for building sophisticated data science dashboards that work anywhere the web does.

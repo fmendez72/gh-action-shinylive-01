@@ -5,7 +5,9 @@ format: html
 
 ## Python Data Explorer
 
-This is a minimal example of Shinylive in Quarto:
+This is a minimal example of Shinylive in Quarto.
+
+It may take some seconds to load.
 
 ```{shinylive-python}
 #| standalone: true
